@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>InflatioChain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <h1>BIENVENIDO</h1>
+
+        <label for="coin">Ingresa Coin ID:</label>
+        <input type="text" id="coin"/>
+        <button onclick="buscarCoin()">Buscar</button>
+
+        <h2>Resultado:</h2>
+        <pre id="resultado">Esperando búsqueda...</pre>
+
+        <!-- SCRIPT -->
+         <script>
+            function buscarCoin(){
+                const coinId = document.getElementById('coin').value;
+                fetch(`/api/v1/coin/${coinId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('resultado').textContent = JSON.stringify(data, null, 2)
+                    })
+                    .catch(error => {
+                        document.getElementById('resultado').textContent = `Error: ${error.message}`;
+                    });
+            }
+         </script>
+    </body>
+</html>
