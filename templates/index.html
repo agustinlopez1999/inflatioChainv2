@@ -8,26 +8,49 @@
     <body>
         <h1>BIENVENIDO</h1>
 
-        <label for="coin">Ingresa Coin ID:</label>
-        <input type="text" id="coin"/>
-        <button onclick="buscarCoin()">Buscar</button>
+        <label for="coin-select">Select Cripto:</label>
+        <select id="coin-select"></select>
+
 
         <h2>Resultado:</h2>
-        <pre id="resultado">Esperando búsqueda...</pre>
 
-        <!-- SCRIPT -->
-         <script>
-            function buscarCoin(){
-                const coinId = document.getElementById('coin').value;
-                fetch(`/api/v1/coin/${coinId}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById('resultado').textContent = JSON.stringify(data, null, 2)
-                    })
-                    .catch(error => {
-                        document.getElementById('resultado').textContent = `Error: ${error.message}`;
-                    });
-            }
-         </script>
+        <div id="result">
+            <img id="coin-image" src="" alt="Coin Image" style="width: 64px;"><br>
+        
+            <p><strong>Nombre:</strong> <span id="coin-name"></span></p>
+            <p><strong>Símbolo:</strong> <span id="coin-symbol"></span></p>
+            <p><strong>Precio:</strong> <span id="coin-price"></span></p>
+            <p><strong>Market Cap:</strong> <span id="coin-marketcap"></span></p>
+            <p><strong>Ranking de Market Cap:</strong> <span id="coin-rank"></span></p>
+        
+            <p><strong>Máximo histórico (ATH):</strong> <span id="coin-ath"></span></p>
+            <p><strong>Cambio desde ATH:</strong> <span id="coin-ath-change"></span></p>
+            <p><strong>Fecha del ATH:</strong> <span id="coin-ath-date"></span></p>
+        
+            <p><strong>Porcentaje emitido:</strong> <span id="coin-emission-percent"></span></p>
+            <p><strong>Suministro circulante:</strong> <span id="coin-circulating"></span></p>
+            <p><strong>Suministro máximo:</strong> <span id="coin-max-supply"></span></p>
+            <p><strong>¿Max Supply es infinito?:</strong> <span id="coin-infinity"></span></p>
+        
+            <p><strong>Precio antiguo (hace 1 año):</strong> <span id="coin-old-price"></span></p>
+            <p><strong>Market Cap antiguo:</strong> <span id="coin-old-marketcap"></span></p>
+            <p><strong>Suministro circulante antiguo:</strong> <span id="coin-old-supply"></span></p>
+        
+            <p><strong>Días desde el primer dato:</strong> <span id="coin-days-since-old"></span></p>
+            <p><strong>Nota histórica:</strong> <span id="coin-historical-note"></span></p>
+        
+            <p><strong>Cambio en 24h:</strong> <span id="coin-change-24h"></span></p>
+            <p><strong>Cambio en 7d:</strong> <span id="coin-change-7d"></span></p>
+            <p><strong>Cambio en 14d:</strong> <span id="coin-change-14d"></span></p>
+            <p><strong>Cambio en 30d:</strong> <span id="coin-change-30d"></span></p>
+            <p><strong>Cambio en 60d:</strong> <span id="coin-change-60d"></span></p>
+            <p><strong>Cambio en 1 año:</strong> <span id="coin-change-1y"></span></p>
+        
+            <p><strong>Última actualización:</strong> <span id="last-update"></span></p>
+        </div>        
+
+        <p id="last-update"></p>
+
     </body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

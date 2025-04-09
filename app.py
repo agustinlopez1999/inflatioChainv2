@@ -65,13 +65,13 @@ def get_coin_summary(coin_id):
 
     #if coin_id is already in OrderedDict cache
     if coin_id in cache and now - cache[coin_id]["time"] < SUMMARY_CACHE_TTL:
-        print("** Coin_id was already in cache **")
+        print(f"** {coin_id} was already in cache **")
         response_data = cache[coin_id]["data"].copy() #temporal copy of "data" in response_data variable
         response_data["last_updated"] = cache[coin_id]["time"] #adding how old is the data we send
         return jsonify(response_data)
     
     #coin_id was not in OrderedDict cache
-    print("** CALLING API, coin_id WAS NOT in cache **")
+    print(f"** CALLING API, {coin_id} WAS NOT in cache **")
     cripto_data = build_cripto_summary(coin_id) #calling Coingecko API via api_call_script.py
 
     if "error" not in cripto_data:
