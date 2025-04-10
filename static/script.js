@@ -35,6 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    //define maxSupply or infinite
+    const maxSupply = (max_supply, max_supply_is_infinity) => {
+        if(max_supply_is_infinity)
+            return `Infinite`;
+        else{{
+            return `${max_supply?.toLocaleString()}`;
+        }}
+    }
+
     //cell color base on % change
     const setChange = (id, value) => {
         const el = document.getElementById(id);
@@ -110,15 +119,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 setText("coin-ath-date", new Date(data.ath_date).toLocaleString());
 
                 setText("coin-emission-percent", `${data.circulating_emission_percentage?.toFixed(2)}%`);
-                setText("coin-circulating", data.circulating_supply?.toLocaleString());
-                setText("coin-max-supply", data.max_supply?.toLocaleString());
+                setText("coin-circulating", `${data.circulating_supply?.toLocaleString()} ${data.symbol?.toUpperCase()}`);
+                setText("coin-max-supply", maxSupply(data.max_supply,data.max_supply_is_infinity));
                 setText("coin-infinity", data.max_supply_is_infinity ? "Sí" : "No");
 
                 setText("coin-old-price", formatPrice(data.old_price));
                 setText("coin-old-marketcap", `$${data.old_market_cap?.toLocaleString()}`);
                 setText("coin-old-supply", data.old_circulating_supply?.toLocaleString());
 
-                setText("coin-days-since-old", `${data.days_since_old_data} días`);
+                setText("coin-days-since-old", `Data from ${data.days_since_old_data} days ago`);
                 setText("coin-historical-note", data.historical_note);
 
                 setChange("coin-change-24h", data.price_change_percentage_24h);
@@ -142,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 setText("last-update", `Última actualización: hace ${minutes}m ${seconds}s`);
 
-                // 🔁 Si pasaron 5 minutos, recargar datos automáticamente SOLO si sigue en la misma cripto
+                // Si pasaron 5 minutos, recargar datos automáticamente SOLO si sigue en la misma cripto
                 if (diffInSeconds >= 300) {
                     clearInterval(updateInterval);
                     setText("last-update", "🔄 Actualizando...");
@@ -150,10 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         fetch(`/api/v1/coin/${currentCoinId}`)
                             .then(res => res.json())
                             .then(newData => {
-                                // reutiliza el bloque de actualización que ya tenés
-                                // o podés mover todo el código de actualización a una función para evitar duplicación
-                                // ⚠️ También deberías guardar `lastDataTimestamp = newData.last_updated * 1000;` nuevamente
-                                select.dispatchEvent(new Event("change")); // reutiliza lógica existente
+                                select.dispatchEvent(new Event("change")); 
                             });
                     }
                 }

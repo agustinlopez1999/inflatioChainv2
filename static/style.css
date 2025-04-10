@@ -30,6 +30,16 @@ h1 {
     color: #f8931a;
 }
 
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #f8931a;
+    margin-bottom: 0.3em;
+    text-align: left;
+}
+
+
 
 /* 🧭 NAVEGACIÓN */
 nav {
@@ -173,6 +183,10 @@ main {
     color: #cccccc;
 }
 
+#coin-marketcap{
+    font-weight: 300;
+}
+
 
 /* 📉 CAMBIOS DE PORCENTAJE */
 #percentage-change-in-days {
@@ -208,7 +222,6 @@ main {
 #ath-analysis,
 #data-longevity {
     background-color: #1e1c36;
-    border: solid black 5px;
     padding: 1em;
     margin-top: 1em;
 }
@@ -230,3 +243,60 @@ footer {
 .negative {
     color: #ef4444;
 }
+
+#supply-analysis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2em;
+    background-color: #1e1c36;
+    margin-top: 1em;
+    border-radius: 12px;
+    flex-wrap: wrap;
+  }
+  
+  #supply-details {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  #actual-supply-analysis,
+  #old-supply-analysis {
+    font-size: 1.1em;
+    background-color: #202038;
+    padding: 1em;
+    border-radius: 10px;
+  }
+  
+  #inflation {
+    flex: 1;
+    background-color: #2a2a4c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    padding: 2em 1em;
+    text-align: center;
+    min-height: 100%;
+    gap: 1em;
+  }
+  
+  .inflation-label {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5em;
+  }
+  
+  #coin-emission-percent {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #b91010;
+  }
+  
+  #coin-days-since-old{
+    font-style: italic;
+  }
