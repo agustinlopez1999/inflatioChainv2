@@ -1,24 +1,41 @@
-/* 🌐 Reset general */
+/* 🌐 RESET GENERAL */
 body {
-    background-color: #14141b;
+    background-color: #1e1c36;
     font-family: 'Inter', sans-serif;
     color: #eeeeee;
     margin: 0;
     padding: 0;
 }
 
-/* 🔠 Tipografía y encabezados */
-h1 {
-    font-size: 4em;
-    color: #f8931a;
-    margin-top: 0.5em;
+
+/* 🔠 TIPOGRAFÍA Y ENCABEZADO PRINCIPAL */
+#logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
 }
 
-/* 🧭 Navegación */
+#logo-img {
+    height: 5.8em;
+    width: auto;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 6em;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #f8931a;
+}
+
+
+/* 🧭 NAVEGACIÓN */
 nav {
     display: flex;
     justify-content: left;
-    padding: 1em;
+    padding: 0.5em 0;
 }
 
 nav a {
@@ -35,20 +52,19 @@ nav a:hover {
     color: #f8931a;
 }
 
-/* 🧱 Estructura principal */
+
+/* 🧱 ESTRUCTURA PRINCIPAL */
 main {
     text-align: center;
-    background-color: #1e1c36;
-    border: solid black 5px;
-    padding: 1em;
-    max-width: 800px; /* AGREGUE */
-    margin: 0 auto; /* AGREGUE */
+    padding: 1em 1em 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* 🔍 Buscador */
+
+/* 🔍 BUSCADOR */
 #search {
     background-color: #1e1c36;
-    border: solid black 5px;
     padding: 1.5em;
     margin-bottom: 2em;
     display: flex;
@@ -58,19 +74,25 @@ main {
 }
 
 #search label {
-    font-weight: 600;
     font-size: 1.2em;
+    font-weight: 400;
     color: #eeeeee;
+    font-family: 'Inter', sans-serif;
 }
 
 #coin-select {
     background-color: #2a2a4c;
     color: #ffffff;
     border: 2px solid #f8931a;
-    border-radius: 6px;
-    font-size: 1em;
-    font-family: 'Inter', sans-serif;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 0.8em 2.5em 0.8em 1em;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
     transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
 }
 
 #coin-select:hover,
@@ -80,55 +102,94 @@ main {
     background-color: #34345a;
 }
 
-/* 🪪 Imagen y nombre */
+
+/* 🪪 DATOS DE CRIPTO PRINCIPALES */
+
+#main-cripto-data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+}
+
+/* Imagen y nombre */
 #image-and-name {
     background-color: #1e1c36;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     gap: 1em;
-    border: solid black 5px;
     padding: 1em;
     height: 150px;
 }
 
 #image-and-name img {
-    width: 128px;
+    width: 100px;
     height: auto;
     max-height: 90%;
 }
 
 #ranking-name-symbol {
     display: flex;
-    gap: 0.5em;
+    align-items: baseline;
+    gap: 0.3em;
+}
+
+#coin-rank {
     font-size: 2em;
+    color: #a0a0a0;
 }
 
-/* 🧾 Datos principales */
-#main-cripto-data {
+#coin-name {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #eeeeee;
+}
+
+#coin-symbol {
+    font-size: 2.2em;
+    color: #888888;
+}
+
+/* Precio y Market Cap */
+#coin-price-box {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 2em; /* HABIA 20px */
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 1.5em;
+    color: white;
+    gap: 0.5em;
 }
 
-#percentage-change-in-days{
+.price-value {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#market-cap-line {
+    font-size: 0.9em;
+    color: #cccccc;
+}
+
+
+/* 📉 CAMBIOS DE PORCENTAJE */
+#percentage-change-in-days {
     display: grid;
     grid-template-rows: auto auto;
     background-color: #202038;
     color: #eeeeee;
-    border-radius:10px;
+    border-radius: 10px;
     overflow: hidden;
     font-weight: bold;
     margin-top: 2em;
 }
 
-.grid-header, .grid-values {
+.grid-header,
+.grid-values {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     text-align: center;
     padding: 10px 0;
 }
@@ -137,11 +198,12 @@ main {
     background-color: #2a2a4c;
 }
 
-.grid-values{
+.grid-values {
     background-color: #202038;
 }
 
-#price-data,
+
+/* 📦 SUPPLY, ATH, ACTUALIZACIÓN */
 #supply-analysis,
 #ath-analysis,
 #data-longevity {
@@ -151,18 +213,20 @@ main {
     margin-top: 1em;
 }
 
-/* 📎 Footer */
+
+/* 📎 FOOTER */
 footer {
     font-size: 0.9em;
     text-align: center;
     margin-top: 5em;
 }
 
+
+/* 🔺 ESTILOS DINÁMICOS */
 .positive {
-    color: #10b981; /* verde esmeralda */
+    color: #10b981;
 }
 
 .negative {
-    color: #ef4444; /* rojo coral */
+    color: #ef4444;
 }
-

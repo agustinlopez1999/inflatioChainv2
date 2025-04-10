@@ -4,6 +4,9 @@
         <title>InflatioChain</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+        <link rel="icon" href="{{ url_for('static', filename='img/inflatiochain_logo.png') }}" type="image/png">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
@@ -15,8 +18,10 @@
             </nav>
         </header>
         <main>
-            <h1>InflatioChain</h1>
-
+            <div id="logo-title">
+                <img src="{{ url_for('static', filename='img/inflatiochain_logo.png') }}" alt="Logo" id="logo-img">
+                <h1>InflatioChain</h1>
+            </div>
             <div id="search">
                 <label for="coin-select">Select Cripto:</label>
                 <select id="coin-select"></select>
@@ -26,18 +31,17 @@
                 <div id="main-cripto-data">
 
                     <div id="image-and-name">
-                        <img id="coin-image" src="" alt="Coin Image"><br>
-                        <div id="ranking-name-symbol">
-                            <p><span id="coin-rank"></span></p>
-                            <p><span id="coin-name"></span></p>
-                            <p><span id="coin-symbol"></span></p>
+                        <img id="coin-image" src="" alt="Coin Image">
+                        <span id="coin-name"></span>
+                        <span id="coin-symbol"></span>
+                    </div>
+
+                    <div id="coin-price-box">
+                        <span id="coin-price" class="price-value"></span>
+                        <div id="market-cap-line">
+                            <strong>Market Cap:</strong> <span id="coin-marketcap"></span>
                         </div>
                     </div>
-                    <div id="price-data">
-                        <p><span id="coin-price"></span></p>
-                        <p>Market Cap: <span id="coin-marketcap"></span></p>
-                    </div>
-                    
 
                 </div>
 

@@ -1,3 +1,7 @@
+let updateInterval = null;
+let lastDataTimestamp = null;
+let currentCoinId = null;
+
 document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("coin-select");
 
@@ -19,14 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
     //format price base on the decimals they have
     const formatPrice = (price) => {
         if(price >= 1){
-            return `$${price.toFixed(2)}`;
+            return `$ ${price.toFixed(2)}`;
         }
         else{
             if(price >= 0.01){
-                return `$${price.toFixed(4)}`;
+                return `$ ${price.toFixed(4)}`;
             }
             else{{
-                return `$${price.toFixed(6)}`;
+                return `$ ${price.toFixed(6)}`;
             }}
         }
     }
@@ -78,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectedId = select.value;
         if (!selectedId) return;
 
+        currentCoinId = selectedId;
+
         setText("coin-name", "Cargando...");
         setText("last-update", "");
 
@@ -97,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setText("coin-symbol", `(${data.symbol?.toUpperCase()})`);
                 setText("coin-price", formatPrice(data.price));
                 setText("coin-marketcap", `$${data.market_cap?.toLocaleString()}`);
-                setText("coin-rank", `#${data.market_cap_rank}`);
+                setText("coin-rank", `#${data.market_cap_rank}  `);
 
                 setText("coin-ath", formatPrice(data.ath));
                 setText("coin-ath-change", `${data.ath_change_percentage?.toFixed(2)}%`);
@@ -124,13 +130,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 setText("coin-change-1y", `${data.price_change_percentage_1y?.toFixed(2)}%`);
 
                 // Tiempo desde última actualización
+                lastDataTimestamp = data.last_updated * 1000; // timestamp real de la API
+
+            if (updateInterval) clearInterval(updateInterval);
+
+            updateInterval = setInterval(() => {
                 const now = Date.now();
-                const updated = data.last_updated * 1000;
-                const diffInSeconds = Math.floor((now - updated) / 1000);
+                const diffInSeconds = Math.floor((now - lastDataTimestamp) / 1000);
                 const minutes = Math.floor(diffInSeconds / 60);
                 const seconds = diffInSeconds % 60;
 
                 setText("last-update", `Última actualización: hace ${minutes}m ${seconds}s`);
+
+                // 🔁 Si pasaron 5 minutos, recargar datos automáticamente SOLO si sigue en la misma cripto
+                if (diffInSeconds >= 300) {
+                    clearInterval(updateInterval);
+                    setText("last-update", "🔄 Actualizando...");
+                    if (select.value === currentCoinId) {
+                        fetch(`/api/v1/coin/${currentCoinId}`)
+                            .then(res => res.json())
+                            .then(newData => {
+                                // reutiliza el bloque de actualización que ya tenés
+                                // o podés mover todo el código de actualización a una función para evitar duplicación
+                                // ⚠️ También deberías guardar `lastDataTimestamp = newData.last_updated * 1000;` nuevamente
+                                select.dispatchEvent(new Event("change")); // reutiliza lógica existente
+                            });
+                    }
+                }
+            }, 1000);
+
+
             })
             .catch(error => {
                 console.error(error);
