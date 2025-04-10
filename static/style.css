@@ -1,0 +1,168 @@
+/* 🌐 Reset general */
+body {
+    background-color: #14141b;
+    font-family: 'Inter', sans-serif;
+    color: #eeeeee;
+    margin: 0;
+    padding: 0;
+}
+
+/* 🔠 Tipografía y encabezados */
+h1 {
+    font-size: 4em;
+    color: #f8931a;
+    margin-top: 0.5em;
+}
+
+/* 🧭 Navegación */
+nav {
+    display: flex;
+    justify-content: left;
+    padding: 1em;
+}
+
+nav a {
+    color: aliceblue;
+    margin: 0 10px;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 1em;
+    text-decoration: none;
+    transition: color 0.1s;
+}
+
+nav a:hover {
+    color: #f8931a;
+}
+
+/* 🧱 Estructura principal */
+main {
+    text-align: center;
+    background-color: #1e1c36;
+    border: solid black 5px;
+    padding: 1em;
+    max-width: 800px; /* AGREGUE */
+    margin: 0 auto; /* AGREGUE */
+}
+
+/* 🔍 Buscador */
+#search {
+    background-color: #1e1c36;
+    border: solid black 5px;
+    padding: 1.5em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#search label {
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #eeeeee;
+}
+
+#coin-select {
+    background-color: #2a2a4c;
+    color: #ffffff;
+    border: 2px solid #f8931a;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease-in-out;
+}
+
+#coin-select:hover,
+#coin-select:focus {
+    outline: none;
+    border-color: #ffffff;
+    background-color: #34345a;
+}
+
+/* 🪪 Imagen y nombre */
+#image-and-name {
+    background-color: #1e1c36;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    border: solid black 5px;
+    padding: 1em;
+    height: 150px;
+}
+
+#image-and-name img {
+    width: 128px;
+    height: auto;
+    max-height: 90%;
+}
+
+#ranking-name-symbol {
+    display: flex;
+    gap: 0.5em;
+    font-size: 2em;
+}
+
+/* 🧾 Datos principales */
+#main-cripto-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2em; /* HABIA 20px */
+    flex-wrap: wrap;
+}
+
+#percentage-change-in-days{
+    display: grid;
+    grid-template-rows: auto auto;
+    background-color: #202038;
+    color: #eeeeee;
+    border-radius:10px;
+    overflow: hidden;
+    font-weight: bold;
+    margin-top: 2em;
+}
+
+.grid-header, .grid-values {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    text-align: center;
+    padding: 10px 0;
+}
+
+.grid-header {
+    background-color: #2a2a4c;
+}
+
+.grid-values{
+    background-color: #202038;
+}
+
+#price-data,
+#supply-analysis,
+#ath-analysis,
+#data-longevity {
+    background-color: #1e1c36;
+    border: solid black 5px;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+/* 📎 Footer */
+footer {
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 5em;
+}
+
+.positive {
+    color: #10b981; /* verde esmeralda */
+}
+
+.negative {
+    color: #ef4444; /* rojo coral */
+}
+

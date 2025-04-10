@@ -3,54 +3,89 @@
     <head>
         <title>InflatioChain</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <h1>BIENVENIDO</h1>
+        <header>
+            <nav>
+                <a href="https://github.com/agustinlopez1999" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/agustinlopez99/" target="_blank">LinkedIn</a>
+                <a href="https://www.youtube.com/thebillions" target="_blank">YouTube</a>
+            </nav>
+        </header>
+        <main>
+            <h1>InflatioChain</h1>
 
-        <label for="coin-select">Select Cripto:</label>
-        <select id="coin-select"></select>
+            <div id="search">
+                <label for="coin-select">Select Cripto:</label>
+                <select id="coin-select"></select>
+            </div>
 
+            <div id="result">
+                <div id="main-cripto-data">
 
-        <h2>Resultado:</h2>
+                    <div id="image-and-name">
+                        <img id="coin-image" src="" alt="Coin Image"><br>
+                        <div id="ranking-name-symbol">
+                            <p><span id="coin-rank"></span></p>
+                            <p><span id="coin-name"></span></p>
+                            <p><span id="coin-symbol"></span></p>
+                        </div>
+                    </div>
+                    <div id="price-data">
+                        <p><span id="coin-price"></span></p>
+                        <p>Market Cap: <span id="coin-marketcap"></span></p>
+                    </div>
+                    
 
-        <div id="result">
-            <img id="coin-image" src="" alt="Coin Image" style="width: 64px;"><br>
-        
-            <p><strong>Nombre:</strong> <span id="coin-name"></span></p>
-            <p><strong>Símbolo:</strong> <span id="coin-symbol"></span></p>
-            <p><strong>Precio:</strong> <span id="coin-price"></span></p>
-            <p><strong>Market Cap:</strong> <span id="coin-marketcap"></span></p>
-            <p><strong>Ranking de Market Cap:</strong> <span id="coin-rank"></span></p>
-        
-            <p><strong>Máximo histórico (ATH):</strong> <span id="coin-ath"></span></p>
-            <p><strong>Cambio desde ATH:</strong> <span id="coin-ath-change"></span></p>
-            <p><strong>Fecha del ATH:</strong> <span id="coin-ath-date"></span></p>
-        
-            <p><strong>Porcentaje emitido:</strong> <span id="coin-emission-percent"></span></p>
-            <p><strong>Suministro circulante:</strong> <span id="coin-circulating"></span></p>
-            <p><strong>Suministro máximo:</strong> <span id="coin-max-supply"></span></p>
-            <p><strong>¿Max Supply es infinito?:</strong> <span id="coin-infinity"></span></p>
-        
-            <p><strong>Precio antiguo (hace 1 año):</strong> <span id="coin-old-price"></span></p>
-            <p><strong>Market Cap antiguo:</strong> <span id="coin-old-marketcap"></span></p>
-            <p><strong>Suministro circulante antiguo:</strong> <span id="coin-old-supply"></span></p>
-        
-            <p><strong>Días desde el primer dato:</strong> <span id="coin-days-since-old"></span></p>
-            <p><strong>Nota histórica:</strong> <span id="coin-historical-note"></span></p>
-        
-            <p><strong>Cambio en 24h:</strong> <span id="coin-change-24h"></span></p>
-            <p><strong>Cambio en 7d:</strong> <span id="coin-change-7d"></span></p>
-            <p><strong>Cambio en 14d:</strong> <span id="coin-change-14d"></span></p>
-            <p><strong>Cambio en 30d:</strong> <span id="coin-change-30d"></span></p>
-            <p><strong>Cambio en 60d:</strong> <span id="coin-change-60d"></span></p>
-            <p><strong>Cambio en 1 año:</strong> <span id="coin-change-1y"></span></p>
-        
-            <p><strong>Última actualización:</strong> <span id="last-update"></span></p>
-        </div>        
+                </div>
 
-        <p id="last-update"></p>
+                <div id="percentage-change-in-days">
+                    <div class="grid-header">
+                        <div>24h:</div>
+                        <div>7d:</div>
+                        <div>14d:</div>
+                        <div>30d:</div>
+                    </div>
+                    <div class="grid-values">
+                        <div id="coin-change-24h"></div>
+                        <div id="coin-change-7d"></div>
+                        <div id="coin-change-14d"></div>
+                        <div id="coin-change-30d"></div>
+                    </div>
+                </div>
+                
 
+                <div id="supply-analysis">
+                    <p><strong>Suministro circulante:</strong> <span id="coin-circulating"></span></p>
+                    <p><strong>Suministro máximo:</strong> <span id="coin-max-supply"></span></p>
+                    <p><strong>¿Max Supply es infinito?:</strong> <span id="coin-infinity"></span></p>
+                    <div id="old-supply-analysis">
+                        <p>Datos de hace <span id="coin-days-since-old"></span></p>
+                        <p><strong>Supply:</strong> <span id="coin-old-supply"></span></p>
+                        <p><strong>MarketCap:</strong><span id="coin-old-marketcap"></span</p>
+                        <p><strong>Porcentaje emitido:</strong> <span id="coin-emission-percent"></span></p>
+                    </div>
+                </div>
+
+                <div id="ath-analysis">
+                    <p><strong>Fecha del ATH:</strong> <span id="coin-ath-date"></span></p>
+                    <p><strong>Máximo histórico (ATH):</strong> <span id="coin-ath"></span></p>
+                    <p><strong>Cambio desde ATH:</strong> <span id="coin-ath-change"></span></p>
+                </div>
+
+                <div id="data-longevity">
+                    <p><strong>Última actualización:</strong> <span id="last-update"></span></p>
+                </div>
+                
+            </div>        
+
+        </main>
+        <footer>
+            <p>Created by Agustin Lopez. Powered by CoinGecko Free API</p>
+        </footer>
+        
     </body>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
