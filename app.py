@@ -85,6 +85,3 @@ def get_coin_summary(coin_id):
     response_data = cripto_data.copy() #copy to add last time updated
     response_data["last_updated"] = now
     return jsonify(response_data)
-
-if __name__ == "__main__":
-    app.run(debug=True)
