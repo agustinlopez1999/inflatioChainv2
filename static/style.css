@@ -112,6 +112,32 @@ main {
     background-color: #34345a;
 }
 
+.ts-dropdown {
+    background-color: #2a2a4c;
+    color: #eeeeee;
+    border: 2px solid #f8931a;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95em;
+    z-index: 999;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .ts-dropdown .option {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .ts-dropdown .option:hover,
+  .ts-dropdown .option.active {
+    background-color: #f8931a;
+    color: #14141b;
+  }
+  
+
 
 /* 🪪 DATOS DE CRIPTO PRINCIPALES */
 
@@ -263,7 +289,8 @@ footer {
   }
   
   #actual-supply-analysis,
-  #old-supply-analysis {
+  #old-supply-analysis,
+  #ath-analysis {
     font-size: 1.1em;
     background-color: #202038;
     padding: 1em;

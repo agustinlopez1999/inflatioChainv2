@@ -62,34 +62,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    //format marketcap
+    const formatMarketCap = (value) => {
+        if (value == null || isNaN(value)) return "N/A";
+    
+        const num = Number(value);
+        const trillion = 1e12;
+        const billion = 1e9;
+        const million = 1e6;
+    
+        let suffix = "";
+        let formatted = "";
+    
+        if (num >= trillion) {
+            formatted = (num / trillion).toFixed(2);
+            suffix = "T";
+        } else if (num >= billion) {
+            formatted = (num / billion).toFixed(2);
+            suffix = "B";
+        } else if (num >= million) {
+            formatted = (num / million).toFixed(2);
+            suffix = "M";
+        } else {
+            formatted = num.toLocaleString();
+        }
+    
+        return `$${formatted}${suffix ? " " + suffix : ""}`;
+    };
+    
+
 
     //load coins
-    fetch("/api/v1/coins/list")
-        .then(res=> res.json())
-        .then(coins => {
-            coins.forEach(coin =>{
-                const option = document.createElement("option");
-                option.value = coin.id;
-                option.textContent = `${coin.name} (${coin.symbol.toUpperCase()})`;
-                select.appendChild(option);
-            });
+    const input = document.getElementById("coin-select");
+    const datalist = document.getElementById("coin-list");
+
+    let coinMap = new Map();
+
     
-            const bitcoinOption = select.querySelector('option[value="bitcoin"]');
-            if (bitcoinOption) {
-                select.value = "bitcoin";
-                select.dispatchEvent(new Event("change"));
-            }
-        })
-        .catch(error => {
-            result.textContent = "ERROR: Couldnt load Coin List"
-            console.error(error);
+fetch("/api/v1/coins/list")
+    .then(res => res.json())
+    .then(coins => {
+        coins.forEach(coin => {
+            const option = document.createElement("option");
+            option.value = coin.id;
+            option.label = `${coin.name} (${coin.symbol.toUpperCase()})`;
+            datalist.appendChild(option);
+            coinMap.set(coin.id, coin.id);
         });
+
+        input.value = "bitcoin";
+        input.dispatchEvent(new Event("change"));
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 
     //user choose coin
     select.addEventListener("change", () => {
-        const selectedId = select.value;
-        if (!selectedId) return;
+        const selectedId = input.value.trim().toLowerCase();
+        if (!coinMap.has(selectedId)) {
+        alert("Invalid coin ID. Please select from the list.");
+        return;
+    }
 
         currentCoinId = selectedId;
 
@@ -111,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setText("coin-name", data.name);
                 setText("coin-symbol", `(${data.symbol?.toUpperCase()})`);
                 setText("coin-price", formatPrice(data.price));
-                setText("coin-marketcap", `$${data.market_cap?.toLocaleString()}`);
+                setText("coin-marketcap", formatMarketCap(data.market_cap));
                 setText("coin-rank", `#${data.market_cap_rank}  `);
 
                 setText("coin-ath", formatPrice(data.ath));
@@ -124,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setText("coin-infinity", data.max_supply_is_infinity ? "Sí" : "No");
 
                 setText("coin-old-price", formatPrice(data.old_price));
-                setText("coin-old-marketcap", `$${data.old_market_cap?.toLocaleString()}`);
+                setText("coin-old-marketcap", formatMarketCap(data.old_market_cap));
                 setText("coin-old-supply", data.old_circulating_supply?.toLocaleString());
 
                 setText("coin-days-since-old", `Data from ${data.days_since_old_data} days ago`);
