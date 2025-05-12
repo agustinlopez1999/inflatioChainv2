@@ -327,3 +327,90 @@ footer {
   #coin-days-since-old{
     font-style: italic;
   }
+
+  /* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    h1 {
+      font-size: 3.2em;
+      text-align: center;
+    }
+  
+    #logo-title {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+    }
+  
+    #main-cripto-data {
+      flex-direction:row;
+      justify-content: center;
+    }
+  
+    #coin-price-box {
+      align-items: center;
+      text-align: center;
+    }
+  
+    #image-and-name {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    #coin-name, #coin-symbol {
+      font-size: 2em;
+    }
+  
+    #coin-rank {
+      font-size: 1.4em;
+    }
+  
+    #supply-analysis {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    #supply-details {
+      width: 100%;
+    }
+  
+    #inflation {
+        flex: 1;
+        background-color: #2a2a4c;
+        padding: 2em;
+        border-radius: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+  
+    .grid-header,
+    .grid-values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    #coin-select {
+      font-size: 1em;
+      padding: 0.6em 1em;
+    }
+  
+    .inflation-label {
+      font-size: 1.6em;
+    }
+  
+    #coin-emission-percent {
+      font-size: 2em;
+    }
+  
+    nav {
+      justify-content: center;
+    }
+  
+    nav a {
+      padding: 0.5em;
+      font-size: 0.95em;
+    }
+  }
+  
